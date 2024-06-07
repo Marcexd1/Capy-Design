@@ -1,0 +1,40 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #292929;
+    font-family: 'calibri';
+}
+
+header{
+    background: #03A9F4;
+}
+
+.menu{
+    width: 900px;
+    margin: 0 auto;
+}
+nav{
+    float: right;
+}
+
+nav ul li{
+    list-style: none;
+    margin: 67px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 12px 0;
+    float: left;
+}
+
+nav ul li{
+    text-decoration: none;
+    color: #444;
+    font-weight: bold;
+}
+
+img{
+    width: 65px;
+}
