@@ -1,0 +1,143 @@
+body {
+    background-color: #f7f7f7; /* Negro oscuro para el fondo */
+    color: #333; /* Blanco grisáceo para el texto */
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    margin-left:19.7%; /* Deja espacio para el menú */
+    width:74.1%;
+    top: 87px; /* Desplaza el menú hacia abajo para evitar superposición con el header (Creo que es innecesario pero lo dejo por las dudas)*/
+    background: transparent;/*Por si pinta poner un fondo*/
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(18px);
+    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.856);
+    color: #fff;
+    border-radius: 10px;
+    padding: 30px 40px;
+  }
+
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  nav li {
+    margin: 0 1rem;
+  }
+  
+  .nav-link {
+    color:#333; /* Blanco grisáceo para los enlaces */
+    text-decoration: none;
+  }
+  
+  .nav-link:hover {
+    text-decoration: underline;
+  }
+
+  h1 {
+    color:#333; /* Blanco grisáceo para el título */
+  }
+  
+  .cta {
+    background-color: #ffcc00; /* Amarillo para el botón */
+    color: #111; /* Negro para el texto del botón */
+    padding: 0.5rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .menu-categorias {
+    position: fixed; /* Fija la posición del menú */
+    top: 87px; /* Desplaza el menú hacia abajo para evitar superposición con el header */
+    left: 0; /* Inicia desde la izquierda */
+    width: 15%; /* Ocupa 15% del ancho */
+    height: calc(100vh - 80px); /* Ocupa toda la altura de la pantalla menos la altura del header */
+    background-color: #222; /* Negro más claro para la sección de categorías */
+    padding: 2rem;
+    overflow-y: auto; /* Agrega scrollbar vertical si es necesario */
+  }
+  
+  header {
+    height: 55px; /* Establece la altura del header */
+    background-color:#ffcc00; /* Amarillo para el header */
+    padding: 1rem;
+  }
+  
+  .menu-categorias ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .menu-categorias li {
+    margin-bottom: 1rem;
+  }
+  
+  .category-link {
+    color: #eee; /* Blanco grisáceo para los enlaces de categorías */
+    text-decoration: none;
+    display: block; /* Ocupa todo el ancho del li */
+    padding: 0.5rem;
+  }
+  
+  .category-link:hover {
+    background-color: #ffc107; /* Amarillo para resaltar al pasar el ratón */
+  }
+  
+  .main-content {
+
+    padding: 1rem;
+  }
+
+  /* Estilos para todos los enlaces */
+a {
+    display: block; /* Ocupa todo el ancho disponible */
+    max-width: calc(100% - 15% - 25%); /* Ancho máximo, menos el 15% de categorías y el 25% de main */
+    padding: 0.5rem; /* Espacio interno */
+    border: none; /* No borde */
+    border-radius: 5px; /* Redondea las esquinas */
+    background-color: #ffcc00; /* Fondo claro */
+    color: #333; /* Texto oscuro */
+    text-decoration: none; /* No subrayado */
+    transition: background-color 0.3s ease; /* Transición suave */
+  }
+  
+  a:hover {
+    background-color: #ffcc00; /* Fondo claro al pasar el ratón */
+    color: #fff; /* Texto blanco al pasar el ratón */
+  }
+  
+  /* Estilos para los enlaces en la navegación */
+  nav a {
+    padding: 1rem 2rem; /* Espacio interno adicional */
+    margin: 0 1rem; /* Espacio entre enlaces */
+  }
+  
+  /* Estilos para los enlaces en la sección de categorías */
+  .menu-categorias a {
+    padding: 0.5rem; /* Espacio interno */
+    margin-bottom: 1rem; /* Espacio entre enlaces */
+    max-width: 100%; /* Ancho máximo para los enlaces en categorías */
+  }
+  
+  /* Estilos para los enlaces en el contenido principal */
+  .main-content a {
+    padding: 1rem; /* Espacio interno */
+    margin-bottom: 1rem; /* Espacio entre enlaces */
+    max-width: 100%; /* Ancho máximo para los enlaces en main, menos el 25% de main */
+  }
+  
+  input[type="search"] {
+    background-color: #333; /* Gris oscuro para el input */
+    color: #eee; /* Blanco grisáceo para el texto del input */
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px;
+  }

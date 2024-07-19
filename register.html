@@ -3,26 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro</title>
-    <link rel="stylesheet" href="Style.css"/> 
-    <link rel="stylesheet" href="./bootstrap-5.2.3-dist/css/bootstrap.css">
-    <link rel="stylesheet" href="Style.css">
-    <script src="./jquery-3.7.1.min.js"></script>
-</head>
-<body>
-    <div id="boxs">
-        <div id="form">
-            <h2>Registro</h2>
-                <form action="register.php" method="post">
-                    <label for="username">Usuario:</label>
-                    <input type="text" id="username" name="username" required>
-                    <br>
-                    <label for="password">Contraseña:</label>
-                    <input type="password" id="password" name="password" required>
-                    <br>
-                    <input type="submit" value="Registrar">
-                </form>
+    <link rel="stylesheet" href="Login y Register.css">
+    <title>Registro de Entrenador</title>
+    <link
+    href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+    rel="stylesheet"
+  />
+    <body>
+        <div class="container">
+            <h2>Login</h2>
+            <form action="register.php" method="post">
+                <div class="input-box">
+                    <input for="nombre" type="text" placeholder="username" required />
+                  <i class="bx bxs-user"></i>
+                  </div>
+                  <div class="input-box">
+                    <input for="" type="password" placeholder="password" required />
+                  <i class="bx bxs-lock-alt"></i>
+                  </div>
+                  <div class="input-box">
+                    <input for="" type="password" placeholder="Confirm Password" required />
+                  <i class="bx bxs-lock-alt"></i>
+                  </div>
+
+    
+                <input type="submit" class="btn" value="Registrarse">
+                <p>Ya tienes una cuenta? <a href="index.html">Inicia sesion aqui!</a></p>
+            </form>
         </div>
-    </div>
-</body>
+    </body>
 </html>
