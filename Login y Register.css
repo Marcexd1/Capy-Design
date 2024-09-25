@@ -15,8 +15,9 @@ body {
   background-position: center;
 }
 
-.container {
-  width: 420px;
+.container-LOG-REG {
+  width: 90%;
+  max-width: 420px;
   background: transparent;
   border: 2px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(18px);
@@ -24,14 +25,15 @@ body {
   color: #fff;
   border-radius: 10px;
   padding: 30px 40px;
+  margin: 20px;
 }
 
-.container h1 {
+.container-LOG-REG h1 {
   font-size: 36px;
   text-align: center;
 }
 
-.container .input-box {
+.container-LOG-REG .input-box {
   position: relative;
   width: 100%;
   height: 50px;
@@ -44,7 +46,7 @@ body {
   background: transparent;
   border: none;
   outline: none;
-  border: 2px solid rgb(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 5px;
   font-size: 16px;
   color: #fff;
@@ -63,15 +65,19 @@ body {
   font-size: 20px;
 }
 
-.container .remember-forgot {
+.container-LOG-REG .remember-forgot {
   display: flex;
   justify-content: space-between;
   font-size: 14.5px;
   margin: -15px 0px 15px;
 }
 
+.remember-forgot label {
+  display: flex;
+  align-items: center;
+}
+
 .remember-forgot label input {
-  color: #fff;
   margin-right: 3px;
 }
 
@@ -84,21 +90,20 @@ body {
   text-decoration: underline;
 }
 
-.container .btn {
+.container-LOG-REG .btn {
   width: 100%;
   height: 45px;
   background: #fff;
   border: none;
   outline: none;
   border-radius: 5px;
-  box-decoration-break: 0px 0px 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   font-size: 16px;
   font-weight: 600;
   color: #333;
 }
 
-.container .register-link {
+.container-LOG-REG .register-link {
   font-size: 14.5px;
   text-align: center;
   margin: 20px 0px 15px;
@@ -112,4 +117,86 @@ body {
 
 .register-link p a:hover {
   text-decoration: underline;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .container-LOG-REG {
+    padding: 20px 30px;
+  }
+
+  .container-LOG-REG h1 {
+    font-size: 28px;
+  }
+
+  .input-box {
+    margin: 20px 0px;
+  }
+
+  .input-box input {
+    padding: 15px 40px 15px 15px;
+  }
+
+  .container-LOG-REG .btn {
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .container-LOG-REG .register-link {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 15px 20px;
+  }
+
+  .container-LOG-REG h1 {
+    font-size: 24px;
+  }
+
+  .input-box {
+    margin: 15px 0px;
+  }
+
+  .input-box input {
+    padding: 10px 35px 10px 10px;
+  }
+
+  .container-LOG-REG .btn {
+    height: 35px;
+    font-size: 12px;
+  }
+
+  .container-LOG-REG .register-link {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 320px) {
+  .container-LOG-REG {
+    padding: 10px 15px;
+  }
+
+  .container-LOG-REG h1 {
+    font-size: 20px;
+  }
+
+  .input-box {
+    margin: 10px 0px;
+  }
+
+  .input-box input {
+    padding: 8px 30px 8px 8px;
+  }
+
+  .container-LOG-REG .btn {
+    height: 30px;
+    font-size: 10px;
+  }
+
+  .container-LOG-REG .register-link {
+    font-size: 10px;
+  }
 }

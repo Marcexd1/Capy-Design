@@ -1,31 +1,32 @@
+
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Login y Register.css">
-    <link rel="stylesheet" href="/styles.css" />
     <title>Login Capy Fitness</title>
     <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"
+      />
   </head>
 <body>
-    <div class="container">
+    <div class="container-LOG-REG">
         <h2>Login</h2>
-        <form action="Login y Register/login.php" method="post">
+        <form action="login.php" method="post">
             <div class="input-box">
-                <input for="nombre" type="text" id="re4" name="re4" required />
+              <input type="text" id="re4" name="username" required />
               <i class="bx bxs-user"></i>
               </div>
               <div class="input-box">
-                <input for="contraseña" type="password" id="p4ss" name="p4ss" required />
+                <input type="Password" id="p4ss" name="password" required />
               <i class="bx bxs-lock-alt"></i>
               </div>
 
-
+              <div class="remember-forgot">
+                <label>
                   <input id="remember-me" type="checkbox" />Recuerdame</label>
                 <a href="#">Olvidaste tu contraseña?</a>
               </div>

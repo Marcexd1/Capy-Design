@@ -78,32 +78,4 @@
             padding: 0.5rem;
             text-align: left;
         }
-        footer {
-            background-color: #000;
-            color: #ffcc00;
-            text-align: center;
-            padding: 4px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            font-size: 50%;
-        }
-        .menu-icon {
-            cursor: pointer;
-        }
-        .menu-icon .bar {
-            width: 25px;
-            height: 3px;
-            background-color: #ff0d0d;
-            margin: 7px 0;
-            transition: 0.2s;
-        }
-        .menu-icon.active .bar:nth-child(1) {
-            transform: rotate(-45deg) translate(-8px, 6px);
-        }
-        .menu-icon.active .bar:nth-child(2) {
-            opacity: 0;
-        }
-        .menu-icon.active .bar:nth-child(3) {
-            transform: rotate(45deg) translate(-8px, -6px);
-        }
+

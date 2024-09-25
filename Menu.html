@@ -1,53 +1,54 @@
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu General</title>
+    <title>Aplicación Web</title>
     <link rel="stylesheet" href="Menu.css">
+    <script defer src="menu.js"></script>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"
+  />
 </head>
 <body>
-    <header>
-        <H1>Menu - Wellnes Center</H1>
-    </header>
-    <main>
-        
-        <div class="container">
-            <section class="main-content">
-                <header-Menu>
-                    <nav>
-                        <ul>
-                            <li><a href="#" class="nav-link">Membrecias En Circulacion</a></li>
-                            <li><a href="#" class="nav-link">Membrecias Finalizadas</a></li>
-                            <li><a href="#" class="nav-link">Re-Novar Membrecia</a></li>
-                            <li><a href="#" class="nav-link">Crear Rutinas</a></li>
-                            <li><a href="#" class="nav-link">Nuevo Miembro</a></li>
-                        </ul>
-                    </nav>
-                </header-Menu>
-    
-                <input type="search" placeholder="Buscar..." NOTA="no funciona">
-                <button class="cta">Coso</button>
-            </section>
-        </div>
 
-        <section class="menu-categorias">
-            <h2>Categorías Dietas</h2>
-            <ul>
-                <li><a href="#" class="category-link">Carnivoras</a></li>
-                <li><a href="#" class="category-link">Vegetarianas</a></li>
-                <li><a href="#" class="category-link">Mixtas</a></li>
-            </ul>
+<!-- Menú de navegación protegido por sesión -->
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    // Redirigir al login si el usuario no está autenticado
+    header("Location: index.html");
+    exit();
+}
+?>
 
-            <h2>Tipos De Rutinas</h2>
-            <ul>
-                <li><a href="#" class="category-link">Definicion</a></li>
-                <li><a href="#" class="category-link">Volumen</a></li>
-                <li><a href="#" class="category-link">Principiantes</a></li>
-                <li><a href="#" class="category-link">Fullbody</a></li>
-                <li><a href="#" class="category-link">Fuerza</a></li>
-            </ul>
-        </section>
-    </main>
+<!-- SubBarra de accesos directos -->
+<div class="SubBarra">
+    <h2 class="subtitulo">Accesos directos</h2>
+    <button class="menu-button">Ver Membrecías</button>
+    <button class="menu-button">Ver Clientes</button>
+    <button class="menu-button">Ver Clases</button>
+    <button class="menu-button">Ver horario del día</button>
+    <h2 class="subtitulo">Funciones</h2>
+    <button class="menu-button">Agregar Clases</button>
+    <button class="menu-button">Agregar Clientes</button>
+    <button class="menu-button">Actualizar Estados</button>
+</div>
+<div class="main-content">
+<div class="user-menu-container" type=""   ></div>
+    <!-- Ícono de usuario -->
+    <i class='bx bxs-user-circle user-icon' id="userIcon"></i>
+
+    <!-- Menú emergente -->
+    <div class="user-menu" id="userMenu">
+        <ul>
+            <li><a href="perfil.php">Perfil</a></li>
+            <li><a href="settings.php">Configuración</a></li>
+            <li><a href="logout.php">Cerrar Sesión</a></li>
+        </ul>
+    </div>
+</div>
+</div>
 </body>
 </html>

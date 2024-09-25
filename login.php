@@ -1,31 +1,43 @@
+
+
 <?php
 session_start();
-include 'config.php'; // Asegúrate de incluir el archivo de conexión a la base de datos
+require_once 'config.php'; // Conectar a la base de datos
+require_once 'functions.php'; // Incluir las funciones de cifrado y descifrado
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['re4'];
-    $password = $_POST['p4ss'];
-    
-    // Verificar las credenciales del usuario
-    $query = "SELECT * FROM entrenadores WHERE nombre = '$username' AND password = '$password'";
-    $result = mysqli_query($conn, $query);
+// Obtener los datos del formulario de login
+$username = $_POST['username'];
+$password = $_POST['password'];
 
-    if (mysqli_num_rows($result) == 1) {
-        $user = mysqli_fetch_assoc($result);
+// Consultar el nombre de usuario en la base de datos
+$sql = "SELECT id, nombre, password FROM entrenadores WHERE nombre = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $username); // Usa el nombre de usuario sin cifrado
 
-        // Iniciar la sesión
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['username'] = $user['username'];
+$stmt->execute();
+$stmt->store_result();
 
-        // Si se seleccionó "Recuérdame", establecer una cookie
-        if (isset($_POST['remember_me'])) {
-            setcookie('user_id', $user['id'], time() + (86400 * 30), "/"); // 86400 = 1 día
-            setcookie('username', $user['username'], time() + (86400 * 30), "/");
-        }
+// Verificar si se encontró un usuario con ese nombre
+if ($stmt->num_rows > 0) {
+    $stmt->bind_result($user_id, $encrypted_username, $hashed_password);
+    $stmt->fetch();
 
-        header("Location: Menu.html"); // Redirigir a la página de bienvenida
+    // Verificar si la contraseña ingresada es correcta
+    if (verifyPassword($password, $hashed_password)) {
+        // Contraseña válida: iniciar sesión
+        $_SESSION['user_id'] = $user_id;
+        $_SESSION['username'] = decryptData($encrypted_username);
+        echo "Inicio de sesión exitoso. Bienvenido, " . $_SESSION['username'] . ".";
+
+        // Redirigir a la página principal
+        header("Location: dashboard.php");
     } else {
-        echo "Credenciales incorrectas";
+        echo "Contraseña incorrecta.";
     }
+} else {
+    echo "Usuario no encontrado.";
 }
+
+$stmt->close();
+$conn->close();
 ?>

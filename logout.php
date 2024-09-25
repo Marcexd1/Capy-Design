@@ -1,11 +1,11 @@
 <?php
+// Iniciar la sesión
 session_start();
-session_unset();
+
+// Destruir todas las sesiones
 session_destroy();
 
-setcookie('user_id', '', time() - 3600, "/");
-setcookie('username', '', time() - 3600, "/");
-
+// Redirigir al formulario de login
 header("Location: index.html");
-exit;
+exit();
 ?>
