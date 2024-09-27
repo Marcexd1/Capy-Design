@@ -23,11 +23,5 @@ if (!isset($_SESSION['user_id'])) {
 <!-- Incluir el menú -->
 <?php include 'menu.html'; ?>
 
-<!-- Contenido del Dashboard -->
-<div class="content">
-    <h1>Bienvenido, <?php echo $_SESSION['username']; ?>!</h1>
-    <p>Este es tu panel de usuario. Puedes acceder a las diferentes secciones usando el menú de navegación.</p>
-</div>
-
 </body>
 </html>

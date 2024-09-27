@@ -149,26 +149,13 @@ body, html {
   height: 100%;
 }
 
-/* Estilos para el header */
-.header {
-  background-color: #333;
-  color: #701c1c;
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-}
-
-/* Título del header */
-.header .user-icon {
-  margin: 0;
-}
-
 /* Contenedor del ícono de usuario y menú emergente */
-.user-menu-container{
-  position: relative;
+.user-menu-container {
+  position: fixed; /* Fijar el contenedor */
+  top: 1rem; /* Separar del borde superior */
+  right: 1rem; /* Separar del borde derecho */
   display: inline-block;
+  z-index: 1000; /* Asegurarse de que esté por encima de otros elementos */
 }
 
 /* Estilo del ícono de usuario */
@@ -176,21 +163,25 @@ body, html {
   font-size: 32px;
   cursor: pointer;
   color: rgb(0, 0, 0); /* Color del ícono */
-  
+  margin-right: 0; /* Asegurar que esté alineado a la derecha */
 }
 
 /* Estilos del menú emergente */
 .user-menu {
   display: none; /* Ocultar el menú por defecto */
-  position: absolute;
+  position: absolute; /* Posicionar relativo al ícono */
   right: 0; /* Alinear a la derecha del ícono */
-  top: 1rem; /* Separar un poco del ícono */
+  top: 3rem; /* Separar del ícono */
   background-color: rgb(56, 50, 50);
-  box-shadow: 0px 4px 8px rgba(95, 86, 86, 0.952)2;
+  box-shadow: 0px 4px 8px rgba(95, 86, 86, 0.952);
   border-radius: 1rem;
-  z-index: 1000;
   width: 8rem;
   padding: 1rem;
+}
+
+/* Mostrar el menú cuando esté activo */
+.user-menu.show {
+  display: block;
 }
 
 /* Estilo de los elementos del menú */
@@ -214,14 +205,4 @@ body, html {
 
 .user-menu ul li a:hover {
   background-color: #f4f4f4;
-}
-
-/* Mostrar el menú cuando esté activo */
-.user-menu.show {
-  display: block;
-}
-
-/* Estilo del contenido principal */
-.main-content {
-  padding: 20px;
 }

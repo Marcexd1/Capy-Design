@@ -95,7 +95,7 @@ $stmt->close();
     <?php endif; ?>
 
     <!-- Formulario para actualizar perfil -->
-    <form action="profile.php" method="POST">
+    <form action="perfil.php" method="POST">
         <div>
             <label for="username">Nombre de Usuario:</label>
             <input type="text" id="username" name="username" value="<?php echo $current_username; ?>" required>

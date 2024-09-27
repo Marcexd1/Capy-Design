@@ -1,9 +1,7 @@
-register.php
-
 <?php
 session_start();
 require_once 'config.php'; // Conectar a la base de datos
-require_once 'functions.php'; // Incluir las funciones de cifrado y descifrado
+require_once 'functions.php'; // Incluir las funciones de cifrado
 
 // Obtener los datos del formulario de registro
 $username = $_POST['username'];
@@ -12,11 +10,8 @@ $confirm_password = $_POST['confirm_password'];
 
 // Verificar si las contraseñas coinciden
 if ($password === $confirm_password) {
-    // Cifrar la contraseña utilizando hashPassword (para contraseñas, no usamos descifrado)
-    $hashed_password = hashPassword($confirm_password);
-
-    // Si deseas cifrar otros datos (como el nombre de usuario):
-    $encrypted_username = encryptData($username);
+    // Cifrar la contraseña utilizando SHA-256
+    $hashed_password = hashPassword($password);
 
     // Insertar el nuevo entrenador en la base de datos
     $sql = "INSERT INTO entrenadores (nombre, password) VALUES (?, ?)";
@@ -24,8 +19,8 @@ if ($password === $confirm_password) {
     $stmt->bind_param("ss", $username, $hashed_password);
     
     if ($stmt->execute()) {
-        echo "Registro exitoso. Bienvenido, " . decryptData($encrypted_username) . ".";
-        header("Location: index.html");
+        echo "Registro exitoso. Bienvenido, " . $username . ".";
+        header("Location: login.php");
     } else {
         echo "Error al registrar el usuario.";
     }
