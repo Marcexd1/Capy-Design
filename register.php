@@ -14,13 +14,13 @@ if ($password === $confirm_password) {
     $hashed_password = hashPassword($password);
 
     // Insertar el nuevo entrenador en la base de datos
-    $sql = "INSERT INTO entrenadores (nombre, password) VALUES (?, ?)";
+    $sql = "INSERT INTO entrenadores (nombre, contraseña) VALUES (?, ?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ss", $username, $hashed_password);
     
     if ($stmt->execute()) {
         echo "Registro exitoso. Bienvenido, " . $username . ".";
-        header("Location: login.php");
+        header("Location: index.html");
     } else {
         echo "Error al registrar el usuario.";
     }

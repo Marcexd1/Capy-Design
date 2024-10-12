@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const userIcon = document.getElementById('userIcon');
     const userMenu = document.getElementById('userMenu');
 
-    // Función para alternar la visibilidad del menú
+    // Función para alternar la visibilidad del menú de usuario
     userIcon.addEventListener('click', function() {
         userMenu.classList.toggle('show'); // Mostrar u ocultar el menú
     });
@@ -16,3 +16,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+

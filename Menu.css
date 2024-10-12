@@ -33,7 +33,7 @@ body {
 }
 
 
-.menu-button {
+.menu-button{
   width: 100%;
   padding: 15px;
   margin: 10px 0;
@@ -43,7 +43,9 @@ body {
   cursor: pointer;
   font-size: 16px;
   text-align: center;
+  
 }
+
 
 .menu-button:hover {
   background-color: #eebe00;
@@ -112,20 +114,6 @@ nav ul {
   display: flex;
 }
 
-nav ul li {
-  margin-right: 20px;
-}
-
-nav ul li a {
-  color: white;
-  text-decoration: none;
-  padding: 10px;
-  display: block;
-}
-
-nav ul li a:hover {
-  background-color: #555;
-}
 
 /* Estilos para el contenido */
 .content {
@@ -152,8 +140,8 @@ body, html {
 /* Contenedor del ícono de usuario y menú emergente */
 .user-menu-container {
   position: fixed; /* Fijar el contenedor */
-  top: 1rem; /* Separar del borde superior */
-  right: 1rem; /* Separar del borde derecho */
+  top: 0.5rem; /* Separar del borde superior */
+  right: 0.5rem; /* Separar del borde derecho */
   display: inline-block;
   z-index: 1000; /* Asegurarse de que esté por encima de otros elementos */
 }
@@ -162,7 +150,7 @@ body, html {
 .user-icon {
   font-size: 32px;
   cursor: pointer;
-  color: rgb(0, 0, 0); /* Color del ícono */
+  color: rgb(255, 0, 0); /* Color del ícono */
   margin-right: 0; /* Asegurar que esté alineado a la derecha */
 }
 
@@ -195,14 +183,56 @@ body, html {
   margin: 0.01rem 0;
 }
 
-.user-menu ul li a {
-  text-decoration: none;
-  color: #000000;
-  display: block;
-  padding: 8px 10px;
-  border-radius: 4px;
+/* Estilos para el modal */
+.modal {
+  display: none; /* Ocultar por defecto */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente */
 }
 
-.user-menu ul li a:hover {
-  background-color: #f4f4f4;
+.modal-content {
+  background-color: white;
+  margin: 15% auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 60%;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Botón de cerrar (×) */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  color: #aaa;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: #000;
+}
+
+/* Mostrar modal cuando esté activo */
+.modal.show {
+  display: block;
+}
+
+.SBtn {
+  width: 100%;
+  padding: 1rem;
+  margin: 1rem 0;
+  background-color: #1d1d1b;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
 }

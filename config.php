@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = ""; // Asumiendo que no hay contraseña para el usuario root
-$dbname = "gym";
+$dbname = "gimnasio";
 
 // Crear conexión
 $conn = new mysqli($servername, $username, $password, $dbname);

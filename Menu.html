@@ -3,55 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplicación Web</title>
+    <title>Menú General</title>
     <link rel="stylesheet" href="Menu.css">
-    <script defer src="menu.js"></script>
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link
+    href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"
+    />
+    <script defer src="Menu.js"></script> <!-- Archivo JS para manejar la carga dinámica -->
+
 </head>
 <body>
-
-<!-- Menú de navegación protegido por sesión -->
-<?php
-// Verificar si la sesión ya está iniciada antes de llamarla
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-
-if (!isset($_SESSION['user_id'])) {
-    // Redirigir al login si el usuario no está autenticado
-    header("Location: index.html");
-    exit();
-}
-?>
 
 <!-- SubBarra de accesos directos -->
 <div class="SubBarra">
     <h2 class="subtitulo">Accesos directos</h2>
-    <button class="menu-button">Ver Membrecías</button>
-    <button class="menu-button">Ver Clientes</button>
-    <button class="menu-button">Ver Clases</button>
-    <button class="menu-button">Ver horario del día</button>
+    <!-- Formularios para cada botón -->
+    <form method="POST" action="">
+        <button class="menu-button" type="submit" name="page" value="ver_membresias">Ver Membrecías</button>
+        <button class="menu-button" type="submit" name="page" value="ver_clientes">Ver Clientes</button>
+        <button class="menu-button" type="submit" name="page" value="ver_agenda">Ver Agenda</button>
+        <button class="menu-button" type="submit" name="page" value="ver_horario_dia">Ver Horario del Día</button>
+    </form>
+
     <h2 class="subtitulo">Funciones</h2>
-    <button class="menu-button">Agregar Clases</button>
-    <button class="menu-button">Agregar Clientes</button>
-    <button class="menu-button">Actualizar Estados</button>
+    <form method="POST" action="">
+        <button class="menu-button" type="submit" name="page" value="agregar_clases">Agregar Clases</button>
+        <button class="menu-button" type="submit" name="page" value="modificar_clases">Modificar Clases</button>
+        <button class="menu-button" type="submit" name="page" value="agregar_clientes">Agregar Clientes</button>
+        <button class="menu-button" type="submit" name="page" value="actualizar_estados">Actualizar Estados</button>
+    </form>
 </div>
 
+<!-- Contenedor donde se cargará el contenido dinámicamente -->
 <div class="main-content">
-    
-</div>
-<div class="user-menu-container"></div>
-    <!-- Ícono de usuario -->
-    <i class='bx bxs-user-circle user-icon' id="userIcon"></i>
+    <?php
+    // Verificar si se ha enviado el formulario
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['page'])) {
+        $page = $_POST['page'];
 
-    <!-- Menú emergente -->
-    <div class="user-menu" id="userMenu">
-        <ul>
-            <li><a href="perfil.php">Perfil</a></li>
-            <li><a href="settings.php">Configuración</a></li>
-            <li><a href="logout.php">Cerrar Sesión</a></li>
-        </ul>
+        // Cargar el contenido correspondiente basado en el valor del formulario
+        switch ($page) {
+            case 'ver_membresias':
+                include 'ver_membresias.php';
+                break;
+            case 'ver_clientes':
+                include 'ver_clientes.php';
+                break;
+            case 'ver_agenda':
+                include 'ver_agenda.php';
+                break;
+            case 'ver_horario_dia':
+                include 'ver_horario_dia.php';
+                break;
+            case 'agregar_clases':
+                include 'agregar_clases.php';
+                break;
+            case 'modificar_clases':
+                include 'modificar_clases.php';
+                break;
+            case 'agregar_clientes':
+                include 'agregar_clientes.php';
+                break;
+            case 'actualizar_estados':
+                include 'actualizar_estados.php';
+                break;
+            case 'perfil':
+                include 'perfil.php';
+                break;
+            case 'configuracion':
+                // Incluir configuracion.php si es necesario
+                break;
+            default:
+                echo "<p>Página no encontrada.</p>";
+        }
+    } else {
+        echo "<p>Seleccione una opción del menú para ver el contenido aquí.</p>";
+    }
+    ?>
+</div>
+
+<!-- Menú de usuario -->
+<form method="POST" action="">
+    <div class="user-menu-container">
+        <i class='bx bxs-user-circle user-icon' id="userIcon"></i>
+        <!-- Menú emergente -->
+        <div class="user-menu" id="userMenu">
+            <ul>
+                <button class="SBtn" type="submit" name="page" value="perfil">Perfil</button>
+                <button class="SBtn" type="submit" name="page" value="configuracion">Configuración</button>
+                <li><a href="logout.php">Cerrar Sesión</a></li>
+            </ul>
+        </div>
     </div>
+</form>
 
 </body>
 </html>
