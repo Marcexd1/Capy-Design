@@ -41,36 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_id'] = $user_id;
             $_SESSION['username'] = $nombre;
 
-            // Verificar si el ID del usuario es 0
-            if ($user_id === 0) {
-                // Generar una clave temporal
-                $temporary_key = bin2hex(random_bytes(16)); // Clave aleatoria de 32 caracteres
-                $expiration_time = time() + (30 * 60); // Expira en 30 minutos
-
-                // Guardar la clave en la base de datos (debe existir una tabla para almacenar claves temporales)
-                $sql_key = "INSERT INTO claves_temporales (user_id, clave, expiracion) VALUES (?, ?, ?)";
-                $stmt_key = $conn->prepare($sql_key);
-                $expiration_date = date("Y-m-d H:i:s", $expiration_time); // Convertir la expiración a formato de fecha
-                $stmt_key->bind_param("iss", $user_id, $temporary_key, $expiration_date);
-                $stmt_key->execute();
-                $stmt_key->close();
-
-                // Enviar una notificación por correo electrónico al administrador
-                $to = "rickyolivera2015@gmail.com"; // Correo del administrador
-                $subject = "Notificación de acceso con ID 0";
-                $message = "El usuario con ID 0 ha intentado iniciar sesión. La clave temporal es: " . $temporary_key;
-                $headers = "From: s.capyfitness@gmail.com";
-
-                if (mail($to, $subject, $message, $headers)) {
-                    echo "Se ha enviado una notificación al administrador.";
-                } else {
-                    echo "Error al enviar la notificación.";
-                }
-
-                // Redirigir o finalizar la sesión
-                // header("Location: secure.php"); // Opcional: redirigir a una página segura
-                exit();
-            }
 
             // Redirigir a la página principal
             header("Location: Pantalla.php");

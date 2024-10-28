@@ -13,6 +13,7 @@
 <!-- SubBarra de accesos directos -->
 <div class="SubBarra">
     <h2 class="subtitulo">Accesos directos</h2>
+    <!-- Formularios para cada botón -->
     <form method="POST" action="ERF.php">
         <button class="menu-button" type="submit" name="page" value="ver_membresias">Ver Membrecías</button>
         <button class="menu-button" type="submit" name="page" value="ver_clientes">Ver Clientes</button>
@@ -29,11 +30,27 @@
     </form>
 </div>
 
+<div class="main-content">
+    <form method="POST" action="perfil.php">
+        <label for="username">Nuevo nombre de usuario:</label>
+        <input type="text" id="username" name="username" required>
+        
+        <label for="password">Nueva contraseña:</label>
+        <input type="password" id="password" name="password">
+        
+        <label for="confirm_password">Confirmar nueva contraseña:</label>
+        <input type="password" id="confirm_password" name="confirm_password">
+        
+        <button type="submit">Actualizar Perfil</button>
+    </form>
+</div>
+
 
 <!-- Menú de usuario -->
 <form method="POST" action="ERF.php">
     <div class="user-menu-container">
         <i class='bx bxs-user-circle user-icon' id="userIcon"></i>
+        <!-- Menú emergente -->
         <div class="user-menu" id="userMenu">
             <ul>
                 <button class="SBtn" type="submit" name="page" value="perfil">Perfil</button>

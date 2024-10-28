@@ -15,14 +15,14 @@ body {
 .SubBarra {
   width: 1rem;
   max-width: 1rem;
-  min-width: 16rem;
+  min-width: 18rem;
   background-color: #333;
   padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 95vh;
+  height: 95.20%;
 }
 
 .subtitulo {
@@ -52,10 +52,11 @@ body {
 }
 
 .main-content {
-  flex-grow: 1;
-  padding: 20px;
+  flex-grow: 0;
+  padding: 15%;
   background-color: #f4f4f4;
   overflow-y: auto;
+  
 }
 
 /* Media Queries para Responsividad */
