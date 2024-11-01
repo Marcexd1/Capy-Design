@@ -1,80 +1,46 @@
 <?php
-// Iniciar sesión si aún no está iniciada
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+session_start();
 
-// Incluir la conexión a la base de datos
-require_once 'config.php';
-
-// Verificar si el usuario está autenticado
-if (!isset($_SESSION['user_id'])) {
-    echo "<p style='color: red;'>Debe iniciar sesión para ver esta página.</p>";
+// Verificar si el usuario está logueado
+if (!isset($_SESSION['username'])) {
+    header("Location: index.html");
     exit();
 }
 
-// Inicializar variables para mensajes
-$error_message = "";
-$success_message = "";
+// Conexión a la base de datos
+require 'conexion.php'; // Archivo que contiene la conexión a la base de datos
 
-// Procesar el formulario si se ha enviado
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $new_username = isset($_POST['username']) ? htmlspecialchars(trim($_POST['username'])) : null;
-    $new_password = isset($_POST['password']) ? trim($_POST['password']) : null;
-    $confirm_password = isset($_POST['confirm_password']) ? trim($_POST['confirm_password']) : null;
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $session_username = $_SESSION['username'];
+    $input_username = $_POST['username'];
+    $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
 
-    // Validar contraseñas
-    if ($new_password && $confirm_password && $new_password !== $confirm_password) {
-        $error_message = "Las contraseñas no coinciden.";
-    } elseif ($new_password && (strlen($new_password) < 8 || !preg_match('/[A-Z]/', $new_password))) {
-        $error_message = "La contraseña debe tener al menos 8 caracteres y una letra mayúscula.";
-    } else {
-        // Actualizar el nombre de usuario si no está vacío
-        if (!empty($new_username)) {
-            $sql_update = "UPDATE entrenadores SET nombre = ? WHERE id = ?";
-            $stmt = $conn->prepare($sql_update);
-            $stmt->bind_param("si", $new_username, $_SESSION['user_id']);
-            if ($stmt->execute()) {
-                $_SESSION['username'] = $new_username;
-                $success_message .= "Nombre de usuario actualizado correctamente. ";
-            } else {
-                $error_message = "Error al actualizar el nombre de usuario.";
-            }
-            $stmt->close();
-        }
-
-        // Actualizar la contraseña si no está vacía
-        if (!empty($new_password)) {
-            $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
-            $sql_update = "UPDATE entrenadores SET password = ? WHERE id = ?";
-            $stmt = $conn->prepare($sql_update);
-            $stmt->bind_param("si", $hashed_password, $_SESSION['user_id']);
-            if ($stmt->execute()) {
-                $success_message .= "Contraseña actualizada correctamente.";
-            } else {
-                $error_message = "Error al actualizar la contraseña.";
-            }
-            $stmt->close();
-        }
+    // Verificar que el nombre de usuario ingresado coincida con el de la sesión
+    if ($session_username !== $input_username) {
+        echo "El nombre de usuario no coincide con el de la sesión.";
+        exit();
     }
 
-    // Redirigir con mensajes
-    if ($error_message) {
-        header("Location: Menu_Perfil.html?error=" . urlencode($error_message));
-    } else {
-        header("Location: Menu_Perfil.html?success=1");
+    // Verificar que las contraseñas coincidan
+    if ($password !== $confirm_password) {
+        echo "Las contraseñas no coinciden.";
+        exit();
     }
-    exit();
+
+    // Actualizar la contraseña en la base de datos
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    $update_query = "UPDATE usuarios SET password = ? WHERE username = ?";
+    $update_stmt = $conn->prepare($update_query);
+    $update_stmt->bind_param("ss", $hashed_password, $session_username);
+
+    if ($update_stmt->execute()) {
+        echo "Contraseña actualizada con éxito.";
+    } else {
+        echo "Error al actualizar la contraseña.";
+    }
+
+    $update_stmt->close();
+    $conn->close();
 }
-
-// Consultar los datos actuales del perfil para mostrar en el formulario
-$sql = "SELECT nombre FROM entrenadores WHERE id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $_SESSION['user_id']);
-$stmt->execute();
-$stmt->bind_result($current_username);
-$stmt->fetch();
-$stmt->close();
-
-$conn->close();
 ?>
