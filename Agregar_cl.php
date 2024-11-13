@@ -7,6 +7,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 $nombre = isset($_POST['nombre']) ? trim($_POST['nombre']) : '';
+$ci = isset($_POST['ci']) ? trim($_POST['ci']) : null;
 $peso = isset($_POST['peso']) ? trim($_POST['peso']) : null;
 $direccion = isset($_POST['direccion']) ? trim($_POST['direccion']) : '';
 $message = '';
@@ -39,13 +40,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $id_m = $stmt_membresia->insert_id;
 
                 // Preparar la consulta SQL para insertar el cliente
-                $stmt_cliente = $conn->prepare("INSERT INTO clientes (nombre, Peso, direccion, id_m) VALUES (?, ?, ?, ?)");
+                $stmt_cliente = $conn->prepare("INSERT INTO clientes (nombre, CI, Peso, direccion, id_m) VALUES (?, ?, ?, ?, ?)");
                 if ($stmt_cliente === false) {
                     $conn->rollback();
                     $message = 'Error en la preparación de la consulta de cliente: ' . $conn->error;
                     $message_type = 'error';
                 } else {
-                    $stmt_cliente->bind_param("sdsi", $nombre, $peso, $direccion, $id_m);
+                    $stmt_cliente->bind_param("ssssi", $nombre, $ci, $peso, $direccion, $id_m);
                     if ($stmt_cliente->execute()) {
                         // Confirmar la transacción
                         $conn->commit();
