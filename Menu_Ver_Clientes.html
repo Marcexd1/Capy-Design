@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="Menu.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <script defer src="Menu.js"></script> <!-- Archivo JS para manejar la carga dinámica -->
+    <script src="clientes.js" defer></script>
 </head>
 <body>
 
@@ -31,9 +32,44 @@
 </div>
 
 <div class="main-content">
-    <Label>No se implemento</Label>
+    <h2>Clientes</h2>
+
+    <button onclick="recargarTabla()" style="position: fixed; top: 20px; left: 25%; padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">Recargar Tabla</button>
+    
+    <!-- Botones para ordenar -->
+    <button onclick="cargarClientes('nombre_asc')">Ordenar por Nombre (A-Z)</button>
+    <button onclick="cargarClientes('id_m_asc')">Ordenar por ID_m (Ascendente)</button>
+    
+    <!-- Tabla de Usuarios -->
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>CI</th>
+                <th>Peso</th>
+                <th>Dirección</th>
+                <th>ID_m</th>
+            </tr>
+        </thead>
+        <tbody id="clientes-table-body">
+            <!-- Los datos de los usuarios se insertarán aquí -->
+        </tbody>
+    </table>
 </div>
 
+<script>
+    // Función para recargar la tabla de usuarios
+    function recargarTabla() {
+        // Realizamos una solicitud HTTP al archivo PHP para obtener los datos de la tabla
+        fetch('obtener_clientes.php')
+            .then(response => response.text())
+            .then(data => {
+                // Insertamos el HTML generado por PHP en el cuerpo de la tabla
+                document.getElementById('clientes-table-body').innerHTML = data;
+            });
+    }
+    </script>
 
 
 
