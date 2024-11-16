@@ -8,7 +8,7 @@ if (!isset($_SESSION['username'])) {
 }
 
 // Conexión a la base de datos
-require 'conexion.php'; // Archivo que contiene la conexión a la base de datos
+require 'config.php'; // Archivo que contiene la conexión a la base de datos
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $session_username = $_SESSION['username'];

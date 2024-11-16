@@ -3,10 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menú General</title>
+    <title>Ver Agenda</title>
     <link rel="stylesheet" href="Menu.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-    <script defer src="Menu.js"></script> <!-- Archivo JS para manejar la carga dinámica -->
+    <script defer src="Menu.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('obtener_agenda.php')
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.querySelector('#agendaTable tbody');
+                    tableBody.innerHTML = '';
+                    data.forEach(agenda => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${agenda.id_a}</td>
+                            <td>${agenda.Nombre}</td>
+                            <td>${agenda.Descripción}</td>
+                            <td>${agenda.fecha_creacion}</td>
+                            <td>${agenda.fecha_agenda}</td>
+                            <td>${agenda.estado}</td>
+                            <td>${agenda.fecha_estado}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    </script>
 </head>
 <body>
 
@@ -31,7 +55,23 @@
 </div>
 
 <div class="main-content">
-    <Label>No se implemento</Label>
+    <h1>Agenda</h1>
+    <table id="agendaTable" border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Fecha de Creación</th>
+                <th>Fecha de Agenda</th>
+                <th>Estado</th>
+                <th>Fecha de Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Las filas se agregarán dinámicamente aquí -->
+        </tbody>
+    </table>
 </div>
 
 <!-- Menú de usuario -->

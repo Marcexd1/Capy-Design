@@ -41,7 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_id'] = $user_id;
             $_SESSION['username'] = $nombre;
 
-
             // Redirigir a la página principal
             header("Location: Pantalla.php");
             exit(); // Asegurar que el script se detenga tras la redirección

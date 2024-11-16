@@ -6,7 +6,7 @@
     <title>Menú General</title>
     <link rel="stylesheet" href="Menu.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-    <script defer src="Menu.js"></script>
+    <script defer src="Menu.js"></script> <!-- Archivo JS para manejar la carga dinámica -->
 </head>
 <body>
 
@@ -31,7 +31,23 @@
 </div>
 
 <div class="main-content">
-    <Label>No se implemento</Label>
+    
+
+    <form method="POST" action="modificar_agenda.php">
+        <label for="id_a">ID de Agenda:</label>
+        <input type="number" id="id_a" name="id_a" required><br>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required><br>
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion"></textarea><br>
+        <label for="fecha_agenda">Fecha de Agenda:</label>
+        <input type="datetime-local" id="fecha_agenda" name="fecha_agenda" required><br>
+        <label for="estado">Estado:</label>
+        <input type="number" id="estado" name="estado" required><br>
+        <button type="submit">Modificar</button>
+
+
+    </form>
 </div>
 
 <!-- Menú de usuario -->

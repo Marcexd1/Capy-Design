@@ -1,0 +1,2 @@
+error_log("Error en la preparación de la consulta: " . $conn->error);
+echo "Ocurrió un error. Por favor, inténtelo de nuevo más tarde.";
