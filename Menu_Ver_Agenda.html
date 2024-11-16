@@ -9,26 +9,38 @@
     <script defer src="Menu.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            fetch('obtener_agenda.php')
-                .then(response => response.json())
-                .then(data => {
-                    const tableBody = document.querySelector('#agendaTable tbody');
-                    tableBody.innerHTML = '';
-                    data.forEach(agenda => {
-                        const row = document.createElement('tr');
-                        row.innerHTML = `
-                            <td>${agenda.id_a}</td>
-                            <td>${agenda.Nombre}</td>
-                            <td>${agenda.Descripción}</td>
-                            <td>${agenda.fecha_creacion}</td>
-                            <td>${agenda.fecha_agenda}</td>
-                            <td>${agenda.estado}</td>
-                            <td>${agenda.fecha_estado}</td>
-                        `;
-                        tableBody.appendChild(row);
-                    });
-                })
-                .catch(error => console.error('Error:', error));
+            cargarAgenda();
+
+            function cargarAgenda() {
+                fetch('obtener_agenda.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        const tableBody = document.querySelector('#agendaTable tbody');
+                        tableBody.innerHTML = '';
+                        data.forEach(agenda => {
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td>${agenda.id_a}</td>
+                                <td>${agenda.Nombre}</td>
+                                <td>${agenda.Descripción}</td>
+                                <td>${agenda.fecha_creacion}</td>
+                                <td>${agenda.fecha_agenda}</td>
+                                <td>${agenda.estado ? 'Realizado' : 'Pendiente'}</td>
+                                <td>${agenda.fecha_estado ? agenda.fecha_estado : ''}</td>
+                                <td>
+                                    <form method="POST" action="agendar.php">
+                                        <input type="hidden" name="update" value="1">
+                                        <input type="hidden" name="id_a" value="${agenda.id_a}">
+                                        <input type="hidden" name="estado" value="${agenda.estado ? 0 : 1}">
+                                        <button type="submit">${agenda.estado ? 'Marcar como Pendiente' : 'Marcar como Realizado'}</button>
+                                    </form>
+                                </td>
+                            `;
+                            tableBody.appendChild(row);
+                        });
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
         });
     </script>
 </head>
@@ -66,6 +78,7 @@
                 <th>Fecha de Agenda</th>
                 <th>Estado</th>
                 <th>Fecha de Estado</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>

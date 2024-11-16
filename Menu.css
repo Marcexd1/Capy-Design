@@ -86,7 +86,7 @@ body, html {
 .user-icon {
   font-size: 32px;
   cursor: pointer;
-  color: rgb(255, 0, 0); /* Color del ícono */
+  color: rgba(0, 0, 0, 0.664); /* Color del ícono */
   margin-right: 0; /* Asegurar que esté alineado a la derecha */
 }
 
